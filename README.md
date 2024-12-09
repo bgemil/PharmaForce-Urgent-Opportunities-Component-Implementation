@@ -1,23 +1,18 @@
-# PharmaForce-Urgent-Opportunities-Component-Implementation
-# Description
-PharmaForce is one of our clients interested in what Sales Cloud has to offer. It’s a company in the pharmaceutics industry and it needs our help to manage their opportunities. They would like to see and create urgent opportunities directly on the account’s related tab. 
+# Salesforce DX Project: Next Steps
 
-The team working on a specific account needs to get a notification whenever a new urgent opportunity is created. 
+Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
 
-There should be a flag on Opportunity object to highlight Urgent opportunities 
+## How Do You Plan to Deploy Your Changes?
 
-On the Account Record Page, in the Related tab, show a table which contains all the linked urgent opportunities for the specific Account.
+Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
 
-The table should also have a New Opportunity button, used to create new Urget Opportunities.
+## Configure Your Salesforce DX Project
 
-The table columns should contain Opportunity Name, Stage, Amount, Close Date 
+The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
 
-When clicking the New Opportunity button it will open a custom modal with fields (Opportunity Name, Stage, Amount, Close Date) to fill in together with Cancel and Save buttons 
+## Read All About It
 
-The opportunity created from the button should automatically be linked to the account on which the button was pressed and also flagged as Urgent 
-
-After the opportunity was added it should be displayed in the table 
-
-If the current User is a member of the account team, he should receive a notification mentioning: You've successfully created the XYZ urgent opportunity. 
-
-The other members of the account team should receive a notification displaying the following message: User ABC created a new urgent opportunity (XYZ).
+- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
+- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
+- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
+- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
