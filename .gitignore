@@ -43,3 +43,4 @@ $RECYCLE.BIN/
 **/__pycache__/
 **/.venv/
 **/venv/
+.sfdx/tools/252/apex.db
