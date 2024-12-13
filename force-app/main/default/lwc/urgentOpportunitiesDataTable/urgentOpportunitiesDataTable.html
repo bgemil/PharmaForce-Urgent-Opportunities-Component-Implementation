@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Urgent Opportunities"> 
+        <div class="slds-form-element slds-p-horizontal_small">
+            <lightning-input class="slds-p-horizontal_medium slds-align_absolute-center slds-m-bottom_medium"
+            type="search" label="Search Opportunities" onchange={handleSearch}></lightning-input>
+            <lightning-button label="New Opportunity" class="slds-m-bottom_medium" onclick={handleNewOpportunity}></lightning-button>
+        </div>
+        <lightning-datatable
+            key-field="Id"
+            data={opportunities}
+            columns={columns}
+            hide-checkbox-column
+        ></lightning-datatable>
+        <div class="pagination">
+            <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+            <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+        </div>
+        <c-create-urgent-opportunity if:true={isModalOpen} onsave={handleModalSave} oncancel={handleModalCancel}></c-create-urgent-opportunity>
+    </lightning-card>
+</template>
