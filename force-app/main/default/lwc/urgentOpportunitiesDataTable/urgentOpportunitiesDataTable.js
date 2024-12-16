@@ -26,20 +26,36 @@ export default class UrgentOpportunitiesTable extends LightningElement {
     loadOpportunities() {
         if(!this.recordId) {
             console.error('Record ID is undefined.');
+            this.showToast('Error', 'Record ID is undefined. Please refresh the page.', 'error');
             return;
         }
+
         fetchUrgentOpportunities({ searchKey: this.searchKey, accountId: this.recordId, offset: this.offset, limitValue: this.limitValue })
             .then(result => {
                 this.opportunities = result;
             })
             .catch(error => {
-                console.error('Error fetching urgent opportunities:', error);
-                this.opportunities = []; // Handle errors gracefully
+                let errorMessage = 'Failed to fetch urgent opportunities.';
+                if (error.body && error.body.message) {
+                    errorMessage = error.body.message;
+                }
+                console.error('Error fetching urgent opportunities:', errorMessage);
+                this.showToast('Error', errorMessage, 'error');
+                this.opportunities = [];
             });
 
         fetchTotalRecordCount({ searchKey: this.searchKey, accountId: this.recordId })
             .then(result => {
                 this.totalRecords = result;
+            })
+            .catch(error => {
+                let errorMessage = 'Failed to fetch the total record count.';
+                if (error.body && error.body.message) {
+                    errorMessage = error.body.message;
+                }
+                console.error('Error fetching total record count:', errorMessage);
+                this.showToast('Error', errorMessage, 'error');
+                this.totalRecords = 0;
             });
     }
 
@@ -108,9 +124,12 @@ export default class UrgentOpportunitiesTable extends LightningElement {
                 this.showToast('Success', 'New urgent opportunity created!', 'success');
             })
             .catch(function (error) {
-                console.error('Error saving opportunity:', JSON.stringify(error));
-            
-                this.showToast('Error', 'Failed to create opportunity: ' + errorMessage, 'error');
+                let errorMessage = 'An unexpected error occurred.';
+                if (error.body && error.body.message) {
+                    errorMessage = error.body.message; // Fetch custom message from Apex
+                }
+                console.error('Error saving opportunity:', errorMessage);
+                this.showToast('Error', errorMessage, 'error');
             }.bind(this));                  
         
         this.isModalOpen = false;
