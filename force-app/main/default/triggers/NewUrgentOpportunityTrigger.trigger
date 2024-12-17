@@ -59,6 +59,7 @@ trigger NewUrgentOpportunityTrigger on Opportunity (after insert) {
             Messaging.sendEmail(emailMessages);
         }
     } catch (Exception e) {
+        System.debug('Trigger caught exception: ' + e.getMessage());
         ErrorHandler.logError(e, 'NewUrgentOpportunityTrigger', 'afterInsert', 'ERROR');
     }
 }
