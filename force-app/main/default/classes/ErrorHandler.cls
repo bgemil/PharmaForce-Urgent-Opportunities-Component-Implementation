@@ -8,6 +8,7 @@ public with sharing class ErrorHandler {
             errorLog.Message__c = e.getMessage();
             errorLog.StackTrace__c = e.getStackTraceString();
 
+            System.debug('Logging Error: ' + errorLog);
             insert errorLog;
         } catch (Exception logError) {
             System.debug('Failed to log error: ' + logError.getMessage());
